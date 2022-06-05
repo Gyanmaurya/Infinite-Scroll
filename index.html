@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Infinite Scrolling</title>
+</head>
+
+<body>
+    <div id="container">
+        
+
+
+    </div>
+</body>
+
+</html>
+<script>
+    const div = document.querySelector('#container');
+    let limit = 4;
+    let pageCount = 1;
+    let postCount = 1;
+
+    const getData = async () => {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}$_page=${pageCount}`);
+        const data = await res.json();
+        //   console.log(data)
+        data.map((e) => {
+          
+            const innerpart = `
+        <div class="heading">
+            <h2>${postCount}</h2>
+        <h4>${e.title}</h4>
+        <p>
+         ${e.body}
+        </p>
+      </div>
+
+        `
+        postCount++
+            div.insertAdjacentHTML('beforeend', innerpart)
+        })
+
+    }
+    getData()
+   const showData=()=>{
+
+    setTimeout(()=>{
+     pageCount++;
+      getData();  
+
+    },300)
+
+
+    }
+    window.addEventListener('scroll', () => {
+        // console.log("scrolled", window.scrollY,window.innerHeight,document.documentElement.scrollHeight) //scrolled from top
+    
+
+        // const { scrollHeight,innerHeight,scrollY } = document.documentElement;
+
+        if ((window.innerHeight+ window.scrollY) >=document.documentElement.scrollHeight-1) {
+            console.log("touch Data")
+            showData()
+        }
+    })
+
+
+
+</script>

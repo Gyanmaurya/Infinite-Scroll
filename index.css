@@ -1,0 +1,26 @@
+*{
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: aqua;
+    padding: 5rem 10rem;
+
+}
+#container{
+    width: 80%;
+    height: 70%;
+    /* border: 1px solid red; */
+    margin: auto;
+    margin-top: 5%;
+}
+.heading{
+    padding: 1%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 3%;
+    border: 2px solid black;
+}
